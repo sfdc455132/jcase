@@ -1,0 +1,10 @@
+#cases-table td{
+    text-align: center;
+    }
+#cases-table th{
+    background-color: black;
+    color: blanchedalmond;
+    }
+img{
+    width: 100px;
+}
