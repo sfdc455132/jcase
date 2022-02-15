@@ -1,6 +1,47 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth import login,authenticate,logout
+
+from user.forms import ProfileForm
 from .models import Profile
+
+def profile(request,id):
+    user=Profile.objects.get(id=id)
+    return render(request,'./user/profile.html',{'user':user})
+
+
+def user_register(request):
+    message='error' 
+    
+    form=ProfileForm()
+    if request.method=='POST':
+        form=ProfileForm(request.POST)
+
+        if form.is_valid():
+            user=form.save(commit=False)
+            user.username=user.username.lower()
+            user.save()
+
+            login(request,user) # request.user
+            return redirect('cases')
+
+
+
+        
+
+   
+    print(form)
+    if form.is_valid():
+        user = form.save(commit=False)
+        user.username=user.username.lower()
+        user.save()
+        message='register success!'
+
+
+
+
+    return render(request,'./user/register.html',{'form':form,'message':message})
+
+
 
 # Create your views here.
 def user_login(request):
