@@ -12,12 +12,20 @@
     <div id="navbar">
         <a href="{% url 'cases' %}"><img src="{% static 'images/icon.png' %}" alt="icon.png"></a>
         {% if request.user.is_authenticated %}
+<<<<<<< HEAD
         <a href="{% url 'profile' request.user.id %}">{{request.user.username}}</a>
+=======
+        <a href="">{{request.user.username}}</a>
+>>>>>>> abdea342ff039d1da254873cd0223bd9700dfe7a
         點數:{{request.user.point}}
         <a href="{% url 'logout' %}">登出</a>
         {% else %}
         <a href="{% url 'login' %}">登入</a>
+<<<<<<< HEAD
         <a href="{% url 'register' %}">註冊</a>
+=======
+        <a href="">註冊</a>
+>>>>>>> abdea342ff039d1da254873cd0223bd9700dfe7a
         {% endif %}
     </div>
     {% block content %}

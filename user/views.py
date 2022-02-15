@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth import login,authenticate,logout
 
+<<<<<<< HEAD
 from user.forms import ProfileForm
 from .models import Profile
 
@@ -46,6 +47,11 @@ def user_register(request):
 # Create your views here.
 def user_login(request):
     username,password,message='','',''
+=======
+
+# Create your views here.
+def user_login(request):
+>>>>>>> abdea342ff039d1da254873cd0223bd9700dfe7a
     if request.method=='POST':
         username= request.POST['username'] 
         password= request.POST['password'] 
@@ -55,6 +61,7 @@ def user_login(request):
             login(request,user) # request.user
             return redirect('cases')
 
+<<<<<<< HEAD
         #帳號錯誤
         if Profile.objects.filter(username=username).exists():
             message='密碼錯誤'
@@ -65,6 +72,12 @@ def user_login(request):
 
 
     return render(request,'./user/login.html',{'username':username,'password':password,'message':message})
+=======
+        print('登入失敗')
+
+
+    return render(request,'./user/login.html')
+>>>>>>> abdea342ff039d1da254873cd0223bd9700dfe7a
 
 def user_logout(request):
     if request.user.is_authenticated:
