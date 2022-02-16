@@ -1,9 +1,16 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth import login,authenticate,logout
-
+from django.contrib.auth.decorators import login_required
 from user.forms import ProfileForm
 from .models import Profile
 
+
+
+
+
+
+
+@login_required(login_url='login')
 def profile(request,id):
     user=Profile.objects.get(id=id)
     return render(request,'./user/profile.html',{'user':user})
@@ -65,7 +72,7 @@ def user_login(request):
 
 
         return render(request,'./user/login.html',{'username':username,'password':password,'message':message})
-        print('登入失敗')
+        
 
 
     return render(request,'./user/login.html')
